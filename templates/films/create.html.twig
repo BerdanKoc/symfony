@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de film{% endblock %}
+{% block pageTitle %}Création de film{% endblock %}
+
+{% block body %}
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="grid grid-cols-2 gap-2">
+        <label for="titre">
+            Titre:
+        </label>
+        <input class="border border-gray-700" type="text" name="titre" id="titre" />
+        <label for="genre">
+            Genre :
+        </label>
+        <select class="border border-gray-700" name="genre" id="genre">
+            <option value="" />
+            {% for genre in genres %}
+                <option value="{{ genre.id }}">{{ genre.nom }}</option>
+            {% endfor %}
+        </select>
+        <label for="acteurs">
+            Acteurs :
+        </label>
+        <select class="border border-gray-700" name="acteurs[]" id="acteurs" multiple="multiple">
+            <option value="" />
+            {% for acteur in acteurs %}
+                <option value="{{ acteur.id }}">{{ acteur.nom }}</option>
+            {% endfor %}
+        </select>
+        <label for="resume">
+            Resume:
+        </label>
+        <input class="border border-gray-700" type="text" name="resume" id="resume" />
+        <label for="annee_de_sortie">
+            Année de Sortie:
+        </label>
+        <input class="border border-gray-700" type="number" name="annee_de_sortie" id="annee_de_sortie" />
+        <label>
+        Affiche :
+        </label>
+        <input type="file" name="affiche" id="affiche"/>
+        <div class="col-span-2 flex justify-around">
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="reset">Annuler</button>
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="submit">Enregistrer</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

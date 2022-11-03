@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de film{% endblock %}
+{% block pageTitle %}Création de film{% endblock %}
+
+{% block body %}
+<form action="" method="POST">
+    <div class="grid grid-cols-2 gap-2">
+        <label for="titre">
+            Titre:
+        </label>
+        <input class="border border-gray-700" type="text" name="titre" id="titre" value="{{film.titre}}" />
+        <label for="resume">
+            Resume:
+        </label>
+        <input class="border border-gray-700" type="text" name="resume" id="resume" value="{{film.resume}}" />
+        <label for="annee_de_sortie">
+            Année de Sortie:
+        </label>
+        <input class="border border-gray-700" type="number" name="annee_de_sortie" id="annee_de_sortie" value="{{film.AnneeDeSortie}}" />
+        <label for="genre">
+            Genre :
+        </label>
+        <select class="border border-gray-700" name="genre" id="genre">
+            <option value="" />
+            {% for genre in genres %}
+                <option value="{{ genre.id }}" {% if film.genre.id == genre.id %} selected {% endif %}>{{ genre.nom }}</option>
+            {% endfor %}
+        </select>
+        <div class="col-span-2 flex justify-around">
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="reset">Annuler</button>
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="submit">Enregistrer</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

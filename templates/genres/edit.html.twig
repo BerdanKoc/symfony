@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de Genre{% endblock %}
+{% block pageTitle %}Création de Genre{% endblock %}
+
+{% block body %}
+<form action="" method="POST">
+    <div class="grid grid-cols-2 gap-2">
+        <label for="nom">
+            Nom :
+        </label>
+        <input class="border border-gray-700" type="text" name="nom" id="nom" value="{{ genre.nom }}" />
+        <div class="col-span-2 flex justify-around">
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="reset">Annuler</button>
+            <button class="border border-gray-700 rounded-md px-4 py-1" type="submit">Enregistrer</button>
+        </div>
+    </div>
+
+</form>
+{% endblock %}

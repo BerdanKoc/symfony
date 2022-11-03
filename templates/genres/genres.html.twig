@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des genres{% endblock %}
+{% block pageTitle %}Liste des genres{% endblock %}
+
+{% block body %}
+<a href="{{ url('app_genres_create') }}"
+    class="border border-gray-700 rounded-md px-4 py-1">
+    Ajouter un genre
+</a>
+<table width='90%'>
+    <thead>
+        <tr bgcolor='green'>
+            <th>Id</th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for genre in genres %}
+        <tr>
+            <td>{{ genre.id }}</td>
+            <td> <a href="{{ url('film_genre', {'genre_id': genre.id}) }}" >{{ genre.nom }}</a></td>
+            <td>
+                <a href="{{ url('app_genre_delete', {'genre': genre.id}) }}">Supprimer</a>
+                <a href="{{ url('app_genre_edit', {'genre': genre.id}) }}">Modifier</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

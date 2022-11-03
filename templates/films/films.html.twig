@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+{% block pageTitle %}Liste des films{% endblock %}
+
+{% block body %}
+<a href="{{ url('app_film_create') }}"
+    class="border border-gray-700 rounded-md px-4 py-1">
+    Ajouter un film
+</a>
+<table width='90%'>
+    <thead>
+        <tr bgcolor='green'>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Genre</th>
+            <th>Acteurs</th>
+            <th>Résumé</th>
+            <th>Année de sortie</th>
+            <th>Affiche</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for film in films %}
+        <tr>
+            <td>{{ film.id }}</td>
+            <td> <a href="{{ url('film', {'id': film.id}) }}" >{{ film.titre }}</a></td>
+            <td> <a href="{{ url('film_genre', {'genre_id': film.genre.id}) }}" >{{ film.genre.nom }}</a></td>
+
+            <td>{% for acteur in film.acteurs %}
+            <a href="{{ url('acteur', {'id': acteur.id}) }}" >{{ acteur.nom }}</a>
+            {% endfor %}</td>
+
+            <td>{{ film.resume }}</td>
+            <td>{{ film.AnneeDeSortie }}</td>
+
+            <td>
+            {% if film.affiche is not null %}
+                <img src="{{ asset("uploads/"~film.affiche) }}" width="100" />
+            {% endif %}
+            </td>
+            
+
+            <td>
+                <a href="{{ url('app_film_delete', {'film': film.id}) }}">Supprimer</a>
+                <a href="{{ url('app_film_edit', {'film': film.id}) }}">Modifier</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
